@@ -1,0 +1,107 @@
+graph relay_coordination_small {
+
+  // =========================
+  // GRAPH SETTINGS
+  // =========================
+  layout=sfdp
+  overlap=false
+  splines=true
+  sep="+8"
+  repulsiveforce=1.5
+  K=1.0
+
+  graph [
+    bgcolor="white"
+    fontname="Helvetica-Bold"
+    fontsize=24
+    label=""
+    labelloc=t
+    pad="0.5"
+  ]
+
+  // =========================
+  // NODE STYLE
+  // =========================
+  node [
+    shape=circle
+    style=filled
+    fixedsize=true
+    width=0.65
+    fontname="Helvetica-Bold"
+    fontsize=14
+    fontcolor=white
+    color=white
+    penwidth=1.5
+  ]
+
+  // =========================
+  // EDGE STYLE
+  // =========================
+  edge [
+    color="#888888"
+    penwidth=1.5
+  ]
+
+  // =========================
+  // RANDOM BRIGHT COLORS
+  // =========================
+
+  node [fillcolor="#E74C3C"]
+  1; 8;
+
+  node [fillcolor="#3498DB"]
+  2; 9;
+
+  node [fillcolor="#2ECC71"]
+  3; 10;
+
+  node [fillcolor="#F39C12"]
+  4; 11;
+
+  node [fillcolor="#9B59B6"]
+  5; 12;
+
+  node [fillcolor="#1ABC9C"]
+  6; 13;
+
+  node [fillcolor="#E91E63"]
+  7; 14;
+
+  // =========================
+  // COORDINATION LINKS
+  // =========================
+
+  1 -- 6;
+
+  2 -- 1;
+  2 -- 7;
+
+  3 -- 2;
+
+  4 -- 3;
+
+  5 -- 4;
+
+  6 -- 5;
+  6 -- 14;
+
+  7 -- 5;
+  7 -- 13;
+
+  8 -- 7;
+  8 -- 9;
+
+  9 -- 10;
+
+  10 -- 11;
+
+  11 -- 12;
+
+  12 -- 13;
+  12 -- 14;
+
+  13 -- 8;
+
+  14 -- 1;
+  14 -- 9;
+}

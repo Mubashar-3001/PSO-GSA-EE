@@ -1,0 +1,49 @@
+digraph PSOGSA_EE {
+  rankdir=TB;
+  node [shape=box, style=filled, fontname="Helvetica", fontsize=11];
+
+  // ---- INPUT STAGE ----
+  subgraph cluster_input {
+    label="INPUT"; style=filled; color=lightblue;
+    A [label="IEEE Test System\n(3 / 8 / 15 / 30 bus)", fillcolor=steelblue, fontcolor=white];
+    B [label="Relay settings:\nTMS, PS, CT ratio,\nFault currents, CTI", fillcolor=steelblue, fontcolor=white];
+  }
+
+  // ---- ALGORITHM STAGE ----
+  subgraph cluster_algo {
+    label="PSO-GSA-EE ALGORITHM"; style=filled; color=lightyellow;
+    C [label="1. Initialise swarm\n(positions & velocities)", fillcolor=gold];
+    D [label="2. Evaluate fitness\n(T_operation)", fillcolor=gold];
+    E [label="3. Compute GSA forces\n(mass, force, acceleration)", fillcolor=gold];
+    F [label="4. Compute Shannon entropy\np_i = d_i / Σ d_j\nH(X) = -Σ p_i log p_i", fillcolor=orange];
+    G [label="5. H(X) < H_min?\nReinitialise worst φ·n agents", fillcolor=orangered, fontcolor=white, shape=diamond];
+    H [label="6. Update velocity (EE rule)\nV(t+1) = ω·V + c1·rand·(1+H)·ac\n+ c2·rand·(Gbest - X)", fillcolor=gold];
+    I [label="7. Update position\nX(t+1) = X(t) + V(t+1)", fillcolor=gold];
+    J [label="8. Update Pbest & Gbest", fillcolor=gold];
+    K [label="Stagnation / max iter?\n→ STOP", shape=diamond, fillcolor=tomato, fontcolor=white];
+  }
+
+  // ---- OUTPUT STAGE ----
+  subgraph cluster_output {
+    label="OUTPUT"; style=filled; color=lightgreen;
+    L [label="Optimised TMS & PS\nfor all relays", fillcolor=forestgreen, fontcolor=white];
+    M [label="T_operation (best / avg / worst)\nover 50 independent runs", fillcolor=forestgreen, fontcolor=white];
+    N [label="Convergence curve\n& Ridgeline distribution", fillcolor=forestgreen, fontcolor=white];
+  }
+
+  // ---- EDGES ----
+  A -> C;
+  B -> C;
+  C -> D -> E -> F -> G;
+
+  G -> H [label="No"];
+  G -> C [label="Yes (reinit)", style=dashed];
+
+  H -> I -> J -> K;
+
+  K -> C [label="No", style=dashed];
+  K -> L [label="Yes"];
+
+  L -> M;
+  L -> N;
+}

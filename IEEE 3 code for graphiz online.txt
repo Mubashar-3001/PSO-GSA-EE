@@ -1,0 +1,74 @@
+graph relay_coordination_smallest {
+
+  // =========================
+  // GRAPH SETTINGS
+  // =========================
+  layout=circo
+  overlap=false
+  splines=true
+
+  graph [
+    bgcolor="white"
+    fontname="Helvetica-Bold"
+    fontsize=22
+    label=""
+    labelloc=t
+    pad="0.4"
+  ]
+
+  // =========================
+  // NODE STYLE
+  // =========================
+  node [
+    shape=circle
+    style=filled
+    fixedsize=true
+    width=0.7
+    fontname="Helvetica-Bold"
+    fontsize=15
+    fontcolor=white
+    color=white
+    penwidth=1.5
+  ]
+
+  // =========================
+  // EDGE STYLE
+  // =========================
+  edge [
+    color="#888888"
+    penwidth=1.6
+  ]
+
+  // =========================
+  // NODE COLORS
+  // =========================
+
+  node [fillcolor="#E74C3C"]
+  1;
+
+  node [fillcolor="#3498DB"]
+  2;
+
+  node [fillcolor="#2ECC71"]
+  3;
+
+  node [fillcolor="#F39C12"]
+  4;
+
+  node [fillcolor="#9B59B6"]
+  5;
+
+  node [fillcolor="#1ABC9C"]
+  6;
+
+  // =========================
+  // COORDINATION LINKS
+  // =========================
+
+  1 -- 5;
+  2 -- 4;
+  3 -- 1;
+  4 -- 6;
+  5 -- 3;
+  6 -- 2;
+}
